@@ -1,0 +1,95 @@
+create table parking(
+num int(11) not null auto_increment,
+cnum varchar(15) not null,
+pnum  varchar(15) not null,
+entime datetime default now(),
+extime datetime,
+price int(11),
+primary key(num)
+) engine = innodb auto_increment = 1 default charset = utf8;
+
+create table UserInfo(
+UserNum int(11) not null auto_increment,
+UserID varchar(15) not null,
+UserName varchar(15) not null,
+PhoneNum varchar(15) nou null,
+primary key(UserNum)
+)auto_increment = 1;
+
+create table SayingInfo(
+SayingNum int(11) not null auto_increment,
+Saying varchar(100) not null,
+Korean varchar(100) not null,
+SayingCnt int(11) not null,
+primary key(SayingNum)
+)auto_increment = 1;
+
+create table SayingCnt(
+UserNum int(11) not null,
+SayingNum int(11) not null,
+SayingCnt int(11) not null,
+FOREIGN KEY UserNum REFERENCES UserInfo (UserNum),
+FOREIGN KEY SayingNum REFERENCES SayingInfo (SayingNum),
+FOREIGN KEY SayingCnt REFERENCES SayingInfo (SayingCnt)
+);
+
+create table SayingRanking(
+SayingRanking int(11) not null auto_increment,
+SayingCnt int(11) not null,
+SayingNum int(11) not null,
+Saying varchar(100) not null,
+primary key(SayingRanking),
+FOREIGN KEY SayingCnt REFERENCES SayingInfo (SayingCnt),
+FOREIGN KEY SayingNum REFERENCES SayingInfo (SayingNum),
+FOREIGN KEY Saying REFERENCES SayingInfo (Saying)
+)auto_increment = 1;
+
+create table UserRanking(
+UserRanking int(11) not null auto_increment,
+UserCnt int(11) not null,
+UserNum int(11) not null,
+UserName varchar(15) not null,
+primary key(UserRanking),
+FOREIGN KEY UserNum REFERENCES UserInfo (UserNum),
+FOREIGN KEY UserName REFERENCES UserInfo (Username)
+)auto_increment = 1;
+
+
+
+
+insert into parking values(1, '10가1231', '010-1234-1231', '2020-01-01 10:00:00', '2020-01-01 12:00:00', 8000);
+insert into parking values(2, '11나1232', '010-1234-1232', '2020-01-01 10:10:00', '2020-01-01 12:20:00', 8000);
+Insert into parking values(3, '10다1233', '010-1234-1233', '2020-01-01 20:00:00', '2020-01-01 21:30:00', 8000);
+Insert into parking values(4, '10라1234', '010-1234-1234', '2020-01-01 16:50:00', '2020-01-01 17:00:00', 8000);
+Insert into parking values(5, '10마1235', '010-1234-1235', '2020-01-01 08:00:00', '2020-01-01 16:40:00', 8000);
+insert into parking values(6, '10바1236', '010-1234-1236', '2020-01-01 17:00:00', '2020-01-01 17:50:00', 1000);
+insert into parking values(7, '10사1237', '010-1234-1237', '2020-01-01 10:00:00', '2020-01-01 12:00:00', 8000);
+insert into parking values(8, '10아1238', '010-1234-1238', '2020-01-01 14:20:00', '2020-01-01 15:20:00', 8000);
+insert into parking values(9, '10자1239', '010-1234-1239', '2020-01-01 10:00:00', '2020-01-01 12:00:00', 8000);
+
+
+create table pos(
+posnum int(11) not null,
+status int(8) unsigned default 0,
+num int(11) unsigned default 0,
+primary key(posnum)
+);
+
+insert into pos (posnum) values(1);
+insert into pos (posnum) values(2);
+insert into pos (posnum) values(3);
+insert into pos (posnum) values(4);
+insert into pos (posnum) values(5);
+insert into pos (posnum) values(6);
+insert into pos (posnum) values(7);
+insert into pos (posnum) values(8);
+insert into pos (posnum) values(9);
+insert into pos (posnum) values(10);
+
+
+create table fee(
+fee_30m int(11) not null,
+fee_10m int(11) not null
+);
+
+insert into fee values(1000, 500);
